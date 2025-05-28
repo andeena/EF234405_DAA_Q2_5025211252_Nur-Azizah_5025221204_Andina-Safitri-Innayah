@@ -1,9 +1,11 @@
 # DAA Q2
 
 ### Group Member :
-Nur Azizah - 5025211252 
-Aulia Daffa Rahmani - 5025221205
-Andina Safitri Innayah - 5025221204
+| Name  | NRP |
+| ------------- | ------------- |
+| Nur Azizah  | 5025211252 |
+| Aulia Daffa Rahmani | 5025221205  |
+| Andina Safitri Innayah | 5025221204  |
 
 ## About
 
