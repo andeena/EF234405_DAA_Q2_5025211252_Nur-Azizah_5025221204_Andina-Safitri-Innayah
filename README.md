@@ -9,7 +9,7 @@
 
 ## About
 
-**The Tic Tac Toe game** is a classic two-player game where the objective is to form a straight line (horizontal, vertical, or diagonal) with three marks (X or O) on a 3x3 grid. This implementation of Tic Tac Toe is designed for a single player to compete against a bot. The game provides a console interface for user interaction.
+**The Tic Tac Toe game** is a classic two-player game where the objective is to form a straight line (horizontal, vertical, or diagonal) with three marks (X or O) on a 3x3 grid. This implementation of Tic Tac Toe is designed for a single player to compete against a bot. The game provides a console interface for user interaction, with three levels of difficulty: Easy, Medium, and Hard. The Hard level leverages a DFS-based Minimax algorithm for optimal bot strategy.
 
 ## Design
 
