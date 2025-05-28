@@ -1,9 +1,9 @@
 # DAA Q2
 
 ### Group Member :
-Nur Azizah - 5025211252 ()
-Aul  
-Andin
+Nur Azizah - 5025211252 
+Aulia Daffa Rahmani - 5025221205
+Andina Safitri Innayah - 5025221204
 
 ## About
 
@@ -77,13 +77,18 @@ The bot supports three difficulty levels:
 The bot selects moves randomly from available empty cells.
 
 ```
-srand(time(0));
-while (1) {
-    x = rand() % 3;
-    y = rand() % 3;
-    if (arr[x][y] == '.') break;
+void botMoveEasy() {
+    int x, y;
+    srand((unsigned)time(NULL));
+    while (1) {
+        x = rand() % 3;
+        y = rand() % 3;
+        if (arr[x][y] == '.') {
+            arr[x][y] = 'O';
+            break;
+        }
+    }
 }
-arr[x][y] = 'O';
 ```
 
 ### 2. Immediate Win/Block Heuristic (Medium Level):
@@ -91,7 +96,21 @@ The bot checks if it can win immediately or needs to block the player from winni
 
 ```
 bool tryMove(char player, int* moveX, int* moveY) {
-    // Tries moves to see if player can win/block immediately.
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (arr[i][j] == '.') {
+                arr[i][j] = player;
+                if (result() == player) {
+                    arr[i][j] = '.';
+                    *moveX = i;
+                    *moveY = j;
+                    return true;
+                }
+                arr[i][j] = '.';
+            }
+        }
+    }
+    return false;
 }
 ```
 
@@ -104,7 +123,38 @@ The bot picks the move that maximizes its minimum gain, ensuring optimal play.
 
 ```
 int minimax(bool isBotTurn) {
-    // DFS recursion exploring game tree states.
+    char res = result();
+    if (res == 'O') return +10;
+    if (res == 'X') return -10;
+    if (res == 'T') return 0;
+
+    if (isBotTurn) {
+        int bestScore = -1000;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (arr[i][j] == '.') {
+                    arr[i][j] = 'O';
+                    int score = minimax(false);
+                    arr[i][j] = '.';
+                    if (score > bestScore) bestScore = score;
+                }
+            }
+        }
+        return bestScore;
+    } else {
+        int bestScore = 1000;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (arr[i][j] == '.') {
+                    arr[i][j] = 'X';
+                    int score = minimax(true);
+                    arr[i][j] = '.';
+                    if (score < bestScore) bestScore = score;
+                }
+            }
+        }
+        return bestScore;
+    }
 }
 ```
 
